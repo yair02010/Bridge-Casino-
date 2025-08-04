@@ -1,6 +1,7 @@
     const express = require('express');
     const cors = require('cors');
     require('dotenv').config();
+    const helmet = require('helmet');
 
     const connectDB = require('./config/db');
     const adminRoutes = require('./routes/admin.routes');
@@ -21,7 +22,8 @@
     app.use(secureRoutes);
     app.use(meRoutes);
     app.use(errorHandler);
-
+    app.use(helmet());
+    
     console.log('Auth routes loaded...');
     app.get('/', (req, res) => {
     res.send('Bridge Casino Server Running 🎲');
